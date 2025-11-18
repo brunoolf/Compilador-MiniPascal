@@ -57,20 +57,20 @@ Nesta fase o compilador passou a validar a coerência semântica do programa, se
 ### 1. Verificação de Declarações
 
 Foi implementada uma minitabela de símbolos estruturada como lista encadeada, conforme exigido:
-
+```
 typedef struct _TNo {
     char ID[16];
     int endereco;
     char tipo[7];
     struct _TNo *prox;
 } TNo;
-
-A tabela armazena:
+```
+**A tabela armazena:**
 - nome do identificador,
 - endereço (ordem de declaração, iniciando em 0),
 - tipo (integer ou boolean).
 
-O compilador detecta:
+**O compilador detecta:**
 - variáveis declaradas corretamente
 - erro semântico quando uma variável é redeclarada, finalizando a compilação.
 
@@ -83,50 +83,48 @@ Sempre que um identificador é utilizado:
 - em condições de if e while,
 - em comandos de read e write,
 
-O compilador verifica se a variável foi declarada previamente.
+> O compilador verifica se a variável foi declarada previamente.
 
-Caso contrário:
+**Caso contrário:**
 - Erro semântico: “variavel nao declarada ‘x’ (linha N)”
 
 ### 3. Checagem de Tipos
 A análise de tipos foi implementada cobrindo todos os casos do enunciado:
 
-Expressões Aritméticas (+, -, *, div)
+**Expressões Aritméticas (+, -, *, div)**
 - Apenas integer.
 - Caso contrário → erro semântico explicativo.
 
-Expressões Relacionais (<, >, <=, etc.)
+**Expressões Relacionais (<, >, <=, etc.)**
 
 - Operadores exigem inteiros.
 - Se um operando não for integer → erro semântico.
 
-Expressões Lógicas (and, or, not)
+**Expressões Lógicas (and, or, not)**
 
 - Operadores exigem booleanos.
 - Se um operando não for boolean → erro semântico.
 
-Atribuição
-O compilador compara:
+**Atribuição**
+> O compilador compara:
 - tipo da variável à esquerda
 - tipo da expressão à direita
-Se não coincidirem → erro semântico.
-
-Condicionais (if, while)
-A expressão dentro da condição deve ser boolean.
+> Se não coincidirem → erro semântico.
+- Condicionais (if, while)
+> A expressão dentro da condição deve ser boolean.
 
 ## Geração de Código Intermediário
 
 ``` proximo_rotulo(): ```
 
-Gera rótulos numéricos crescentes:
+**Gera rótulos numéricos crescentes:**
 ``` L1, L2, L3, ... ```
 
-Código Gerado:
-
-O compilador cria um arquivo:
+**Código Gerado:**
+> O compilador cria um arquivo:
 ``` codigo.txt ```
 
-Com instruções da máquina-objeto, incluindo:
+**Com instruções da máquina-objeto, incluindo:**
 
 - PUSH
 - ADD, SUB, MUL, DIV
@@ -137,8 +135,7 @@ Com instruções da máquina-objeto, incluindo:
 
 Variáveis são usadas pelo nome, conforme exigido.
 
-Estruturas com rotulagem completa:
-
+**Estruturas com rotulagem completa:**
 - atribuições
 - expressões
 - if / if-else
@@ -146,22 +143,21 @@ Estruturas com rotulagem completa:
 - comandos read / write
 
 ### Testes Realizados na Fase 2
+> Foram testados:
 
-Foram testados:
-
-Redeclarações
+**Redeclarações**
 - erro semântico corretamente lançado
 
-Uso de variável não declarada
+**Uso de variável não declarada**
 - erro preciso, apontando a linha
 
-Tipos incompatíveis em expressão (ex: boolean + integer)
+**Tipos incompatíveis em expressão (ex: boolean + integer)**
 - erro semântico com mensagem clara
 
-Condições inválidas
+**Condições inválidas**
 - erro apontando que if/while precisa de boolean
 
-Operadores aplicados ao tipo errado (ex: x and y onde x é integer)
+**Operadores aplicados ao tipo errado (ex: x and y onde x é integer)**
 - erro semântico apontando o operando causador do problema
 
 ### Considerações Finais
