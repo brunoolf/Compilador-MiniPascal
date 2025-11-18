@@ -1,0 +1,20 @@
+program exemploCompleto;
+var x, y, z : integer;
+var flag : boolean;
+
+begin
+   x := 5;
+   y := 10;
+   z := (x + y) * 2;
+
+   flag := true;
+
+   if flag then
+      z := z + 1
+   else
+      z := z - 1;
+
+   while z < 50 do
+      z := z + 5;
+
+end.
