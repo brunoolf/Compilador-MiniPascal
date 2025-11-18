@@ -14,7 +14,8 @@ Este projeto consiste no desenvolvimento de um compilador para uma linguagem sim
 - Parte 1: Implementação da análise léxica e sintática.
 - Parte 2: Implementação da análise semântica e da geração de código intermediário.
 
-O compilador foi implementado totalmente em C, utilizando apenas bibliotecas padrão.
+> [!NOTE]
+> O trabalho foi desenvolvido na linguagem C e foi testado usando o compilador do MinGW com VSCode
 
 ### Como compilar:
 
